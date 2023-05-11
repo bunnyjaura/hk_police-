@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hk_policestation_hq/controllers/Controllers.dart';
 import 'package:hk_policestation_hq/screens/fresh_screen.dart';
 import 'package:hk_policestation_hq/screens/history_screen.dart';
 import 'package:hk_policestation_hq/screens/settings_screen.dart';
@@ -6,8 +7,9 @@ import 'package:hk_policestation_hq/widgets/home_items.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+   HomeScreen({super.key});
 
+var items;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                     backgroundImage: AssetImage('assets/img_police.png'),
                   ),
                 ),
-                Text('chandigarh police headstation',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),),
+                Text('${Controllers().userFetchData.name}',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700),),
               ],
             ),
           ),

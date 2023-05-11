@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hk_policestation_hq/controllers/Controllers.dart';
 
 import '../API.dart';
 import '../style.dart';
@@ -18,10 +20,10 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   TextEditingController _emailPhoneController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SingleChildScrollView(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
@@ -106,120 +108,56 @@ class _LoginScreenState extends State<LoginScreen> {
                         setState(() {
                           _isLoading = true;
                         });
-                        Api().login(username: _emailPhoneController.text, pass:  _passwordController.text).whenComplete(() => null).then((value) {
-                            
-                            
-                            Get.to(HomeScreen());
-                        });
-                      
-                          Apis()
-                              .vendorDoctorLogin(
-                                  email: _emailPhoneController.text,
-                                  password: _passwordController.text)
-                              .whenComplete(() => null)
-                              .then((value) async {
+                        Api()
+                            .login(
+                                username: _emailPhoneController.text,
+                                pass: _passwordController.text)
+                            .whenComplete(() => null)
+                            .then((value) {
+                          print(value);
+
+                          if (value["success"] == "0") {
+                            showToast(color: Colors.red, msg: value["message"]);
+                          }
+                          if (value["success"] == "1") {
                             if (value["message"] == "login successfully") {
-                              userModal.qualificationTitle =
-                                  value["details"]['qualificationTitle'];
-                              userModal.specialistTitle =
-                                  value["details"]['specialistTitle'];
-                              userModal.id = value["details"]['id'];
-                              userModal.dr_qualification =
-                                  value["details"]['dr_qualification'];
-                              userModal.dr_speciality =
-                                  value["details"]['dr_speciality'];
-                              userModal.name = value["details"]['name'];
-                              userModal.email = value["details"]['email'];
-                              userModal.phone = value["details"]['phone'];
-                              userModal.password =
-                                  value["details"]['password'];
-                              userModal.address = value["details"]['address'];
-                              userModal.gender = value["details"]['gender'];
-                              userModal.clinic_Name =
-                                  value["details"]['clinic_Name'];
-                              userModal.councilNumber =
-                                  value["details"]['councilNumber'];
-                              userModal.licenceNumber =
-                                  value["details"]['licenceNumber'];
-                              userModal.doctorImage =
-                                  value["details"]['doctorImage'];
-                              userModal.signature =
-                                  value["details"]['signature'];
-                              userModal.councilCertificate =
-                                  value["details"]['councilCertificate'];
-                              userModal.licence = value["details"]['licence'];
-                              userModal.photoId = value["details"]['photoId'];
-                              userModal.workExp = value["details"]['workExp'];
-                              userModal.language =
-                                  value["details"]['language'];
-                              userModal.online_price =
-                                  value["details"]['online_price'];
-                              userModal.online_status =
-                                  value["details"]['online_status'];
-                              userModal.offline_price =
-                                  value["details"]['offline_price'];
-                              userModal.offline_status =
-                                  value["details"]['offline_status'];
-                              userModal.wallet = value["details"]['wallet'];
-                              userModal.status = value["details"]['status'];
-                              userModal.balance_amount =
-                                  value["details"]['balance_amount'];
-                              userModal.reg_id = value["details"]['reg_id'];
-                              userModal.device_type =
-                                  value["details"]['device_type'];
-                              userModal.deviceID =
-                                  value["details"]['deviceID'];
-                              userModal.login_type =
-                                  value["details"]['login_type'];
-                              userModal.latitude =
-                                  value["details"]['latitude'];
-                              userModal.longitude =
-                                  value["details"]['longitude'];
-                              userModal.chatID = value["details"]['chatID'];
-                              userModal.qualification =
-                                  value["details"]['qualification'];
-                              userModal.council_num =
-                                  value["details"]['council_num'];
-                              userModal.doctorSignature =
-                                  value["details"]['doctorSignature'];
-                              userModal.created = value["details"]['created'];
-                              userModal.updated = value["details"]['updated'];
-                              userModal.certificateFiles =
-                                  value["details"]['certificateFiles'];
-                              userModal.qualificationFiles =
-                                  value["details"]['qualificationFiles'];
+                              box.write('userData', value);
 
-                              SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              prefs.setBool('isLoggedIn', true);
-                              prefs.setString('userDetails',
-                                  jsonEncode(value['details']).toString());
-                              // prefs.setString('id', data['details']['id']);
-                              //  prefs.setString('id', data['details']['id']);
-                              setState(() {
-                                _isLoading = false;
-                              });
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    duration: Duration(milliseconds: 1000),
-                                    backgroundColor:
-                                        Color.fromARGB(255, 53, 53, 53),
-                                    content: Text(
-                                      'Processing Data',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
-                              );
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => HomeScreen(),
-                              //     ));
-                            } else {
-                              showToast(color: Colors.red, msg: value["message"].toString())
+                              Controllers().userPutData.id =
+                                  value['details']['id'];
+                              Controllers().userPutData.name =
+                                  value['details']['name'];
+                              Controllers().userPutData.email =
+                                  value['details']['email'];
+                              Controllers().userPutData.password =
+                                  value['details']['password'];
+                              Controllers().userPutData.phone =
+                                  value['details']['phone'];
+                              Controllers().userPutData.address =
+                                  value['details']['address'];
+                              Controllers().userPutData.image =
+                                  value['details']['image'];
+                              Controllers().userPutData.device_type =
+                                  value['details']['device_type'];
+                              Controllers().userPutData.login_type =
+                                  value['details']['login_type'];
+                              Controllers().userPutData.latitude =
+                                  value['details']['latitude'];
+                              Controllers().userPutData.longitude =
+                                  value['details']['longitude'];
+                              Controllers().userPutData.reg_id =
+                                  value['details']['reg_id'];
+                              Controllers().userPutData.EmailOtp =
+                                  value['details']['EmailOtp'];
+                              Controllers().userPutData.created =
+                                  value['details']['created'];
+                              Controllers().userPutData.updated =
+                                  value['details']['updated'];
 
+                              Get.to(HomeScreen());
                             }
-                          });
-                        
+                          }
+                        });
                       }
 
                       // LoginUser(_emailController.text,

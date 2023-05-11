@@ -5,10 +5,11 @@ import 'package:hk_policestation_hq/widgets/fresh_item.dart';
 import 'package:hk_policestation_hq/widgets/not_found.dart';
 
 class FreshScreen extends StatelessWidget {
-   FreshScreen({super.key});
+  
+   FreshScreen({super.key,});
+
 
 int items = 2;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

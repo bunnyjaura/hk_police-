@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hk_policestation_hq/controllers/Controllers.dart';
 
 
 import '../widgets/settings_item.dart';
@@ -6,7 +7,7 @@ import '../widgets/settings_item.dart';
 class SettingsScreen extends StatelessWidget {
   
 SettingsScreen({super.key});
-List a = [
+List<String> names = [
     'My Profile',
     'Manage Police station ',
     'About',
@@ -14,7 +15,7 @@ List a = [
     'Terms & Conditions',
     'Logout'
   ];
-  List<IconData> i = [
+  List<IconData> icons = [
     Icons.person,
     Icons.local_post_office,
     Icons.note_add,
@@ -71,11 +72,11 @@ List a = [
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        'Ambala Police Headstation',
+                        '${Controllers().userFetchData.name}',
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w600),
                       ),
-                      Text('Chandigarh',
+                      Text('${Controllers().userFetchData.address}',
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w100)),
                     ],
@@ -83,16 +84,8 @@ List a = [
                 ],
               ),
             ),
-            Flexible(
-              child: ListView.builder(
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return SettingsItem(
-                      icon: i[index],
-                      name: a[index],
-                    );
-                  }),
-            ),
+            SettingsItem(name: 'My Profile', icon: Icons.person,ontap: (){},)
+         
           ],
         ),
       ),
