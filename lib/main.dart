@@ -5,6 +5,8 @@ import 'package:hk_policestation_hq/screens/history_screen.dart';
 import 'package:hk_policestation_hq/screens/home_screen.dart';
 import 'package:hk_policestation_hq/style.dart';
 
+import 'screens/login_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           
           primarySwatch: Colors.blue,
         ),
-        home:  HomeScreen(),
+        home:  LoginScreen(),
       ),
     );
   }
