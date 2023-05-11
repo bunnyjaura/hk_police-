@@ -36,7 +36,7 @@ body: Center(child: Column(
         decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/img_patient.jpg'),fit: BoxFit.fill),borderRadius: BorderRadius.circular(15),color: Colors.amber),
       ),
     ),
-    DetailsItem(title: 'Details',isDropDown: true,dropDownItems: ['bunny','bunny','bjbu'],),
+    DetailsItem(title: 'Details',isDropDown: true,dropDownItems: ['a','b','c','d'],),
     
   ],
 )),

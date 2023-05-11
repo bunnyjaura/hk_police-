@@ -14,7 +14,7 @@ List<String>?  dropDownItems;
 }
 
 class _DetailsItemState extends State<DetailsItem> {
-String dropDownValue='';
+String dropDownValue = 'a';
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +36,16 @@ String dropDownValue='';
             padding: const EdgeInsets.only(left: 10),
             child: Text('${widget.subtitle}',style: TextStyle(fontSize: 13,color: Colors.black54),),
           ),
-    DropdownButton(
+   widget.isDropDown ==true? DropdownButton(
       value: dropDownValue,
-      items: ['a','b','c'].map((String value) {
+      items: widget.dropDownItems!.map((String value) {
 return DropdownMenuItem<String>(value: value,child: Text(value));
       } ).toList(),
-      onChanged: (dynamic? newValue){
+      onChanged: (dynamic newValue){
         setState(() {
           dropDownValue=newValue;
         });
-      },)
+      },): Container()
         ],),
       ),
     );
