@@ -34,7 +34,7 @@ String dropDownValue = 'a';
           SizedBox(height: 6,),
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Text('${widget.subtitle}',style: TextStyle(fontSize: 13,color: Colors.black54),),
+            child: widget.subtitle!= null?  Text('${widget.subtitle}',style: TextStyle(fontSize: 13,color: Colors.black54),):Container(),
           ),
    widget.isDropDown ==true? DropdownButton(
       value: dropDownValue,
