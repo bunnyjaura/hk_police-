@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 class SettingsItem extends StatelessWidget {
   String name;
   IconData icon;
-GestureTapCallback?  ontap;
-  SettingsItem ({
-    super.key,
-    required this.name,
-    required this.icon,
-    required this.ontap
-  });
+  void Function()? ontap;
+  SettingsItem(
+      {super.key, required this.name, required this.icon, required this.ontap});
 
   @override
   Widget build(BuildContext context) {
