@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../API.dart';
 import '../style.dart';
 import '../widgets/text_field_prefix_icon.dart';
 import '../widgets/toast.dart';
@@ -29,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 60,
             ),
             Image.asset(
-              'assets/images/hk_logo.png',
+              'assets/img_health_kangaroo_logo.png',
               height: 120,
             ),
             const SizedBox(
@@ -105,11 +106,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         setState(() {
                           _isLoading = true;
                         });
-                        //Api().login(username: emailPhoneController.text, pass:  passwordController.text).whenComplete(() => null).then((value) {
+                        Api().login(username: _emailPhoneController.text, pass:  _passwordController.text).whenComplete(() => null).then((value) {
                             
                             
-                        //     Get.to(HomeScreen());
-                        // });
+                            Get.to(HomeScreen());
+                        });
                       
                         //   Apis()
                         //       .vendorDoctorLogin(
