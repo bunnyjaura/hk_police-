@@ -20,6 +20,7 @@ class Api {
       'emailPhone': username,
       'password': pass,
       'reg_id': '',
+
     });
 
     Response response = await dio.post('${url}login', data: formdata);
