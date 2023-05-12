@@ -46,6 +46,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Colors.white,
+      child: Center(
+          child: Image.asset(
+        'assets/img_health_kangaroo_logo.png',
+        height: 120,
+      )),
+    );
   }
 }

@@ -103,7 +103,7 @@ class SettingsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/ic_hospital.png'),
+                      backgroundImage: AssetImage('assets/ic_hospital.png',),
                       radius: 20,
                     ),
                   ),
