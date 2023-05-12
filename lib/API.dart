@@ -21,13 +21,11 @@ class Api {
    
     var data;
     var formdata = FormData.fromMap({
-      'username': username,
+      'emailPhone': username,
       'password': pass,
     
       'reg_id': '',
-      'device_type': '',
-      'latitude': '',
-      'longitude': ''
+      
     });
 
     Response response = await dio.post('${url}login', data: formdata);
