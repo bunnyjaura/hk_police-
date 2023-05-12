@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:get/get.dart' as g;
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' as g;
+import 'package:hk_policestation_hq/controllers/Controllers.dart';
 
 class Api {
   String url =
@@ -15,7 +16,7 @@ class Api {
     required String username,
     required String pass,
   }) async {
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'emailPhone': username,
       'password': pass,
@@ -41,7 +42,7 @@ class Api {
 
   Future<dynamic> validate_Email() async {
     print("validate_Email called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'email': 'email',
     });
@@ -62,7 +63,7 @@ class Api {
   //forgotPassword
   Future<dynamic> forgotPassword() async {
     print("forgotPassword called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'email': 'email',
       'password': 'password',
@@ -84,7 +85,7 @@ class Api {
   //logout
   Future<dynamic> logout() async {
     print("logout called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'id': 'id',
     });
@@ -105,7 +106,7 @@ class Api {
   //ChangePassword
   Future<dynamic> ChangePassword() async {
     print("ChangePassword called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'id': 'id',
       'OldPassword': 'OldPassword',
@@ -128,7 +129,7 @@ class Api {
   //update_policeheadquater
   Future<dynamic> update_policeheadquater() async {
     print("update_policeheadquater called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'email': 'email',
       'phone': 'phone',
@@ -152,7 +153,7 @@ class Api {
   //add_policesStation
   Future<dynamic> add_policesStation() async {
     print("add_policesStation called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'email': 'email',
       'password': 'password',
@@ -176,7 +177,7 @@ class Api {
   //get_policeStationlist
   Future<dynamic> get_policeStationlist() async {
     print("get_policeStationlist called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'hq_id': 'hq-id',
       'address': 'address',
@@ -199,7 +200,7 @@ class Api {
   //delete_police_Station
   Future<dynamic> delete_police_Station() async {
     print("delete_police_Station called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'hq_id': 'hq-id',
       'address': 'address',
@@ -222,7 +223,7 @@ class Api {
 //update_policeStation
   Future<dynamic> update_policeStation() async {
     print("update_policeStation called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'password': 'password',
       'address': 'address',
@@ -246,7 +247,7 @@ class Api {
 //patientDetailsByPoliceSta
   Future<dynamic> patientDetailsByPoliceSta() async {
     print("patientDetailsByPoliceSta called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'policeheadquaterId': 'policeheadquaterId',
       'address': 'address',
@@ -270,7 +271,7 @@ class Api {
 
   Future<dynamic> assignCaseToPoliceStation() async {
     print("assignCaseToPoliceStation called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'policeStationId': 'policeStationId',
       'name': 'name',
@@ -295,7 +296,7 @@ class Api {
 
   Future<dynamic> completePoliceStationAssignCase() async {
     print("completePoliceStationAssignCase called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'policeStationId': 'policeStationId',
       'name': 'name',
@@ -319,7 +320,7 @@ class Api {
   //policeStationHeadCase_History
   Future<dynamic> policeStationHeadCase_History() async {
     print("policeStationHeadCase_History called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
       'hq_id': 'hq-id',
       'address': 'address',
@@ -342,10 +343,10 @@ class Api {
 
   Future<dynamic> policeStationHeadTotalCase() async {
     print("policeStationHeadTotalCase called");
-    var data;
+    Map data;
     var formdata = FormData.fromMap({
-      'policeStationId': 'policeStationId',
-      'address': 'address',
+      "policeheadquaterId": Controllers().userFetchData.id,
+     // 'address': Controllers().userFetchData.address,
     });
 
     Response response =

@@ -64,37 +64,26 @@ class SettingsScreen extends StatelessWidget {
     },
   };
   final box = GetStorage();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: InkWell(
-          onTap: () => Get.to('Homescreen'),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-        ),
-        title: const Center(
-            child: Text(
-          'Settings',
-          style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
-        )),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              'assets/ic_home.png',
-              height: 20,
-              width: 20,
-            ),
-          ),
-        ],
-      ),
+      
+  leading: InkWell(
+    onTap: () => Get.back(),
+    child: const Icon(Icons.arrow_back_ios,color: Colors.black,)),
+  centerTitle: true,
+  title: const Text('Settings',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),),
+  elevation: 0,
+  backgroundColor: Colors.transparent,
+  actions: [
+   Padding(
+     padding: const EdgeInsets.all(16.0),
+     child: Image.asset('assets/ic_home.png'),
+   )
+  ],
+),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(

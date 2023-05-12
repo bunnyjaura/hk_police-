@@ -28,7 +28,7 @@ builder: (context, orientation, screenType)
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
-            
+           
             primarySwatch: Colors.blue,
           ),
           home:  const SplashScreen(),
