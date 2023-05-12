@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hk_policestation_hq/API.dart';
 import 'package:hk_policestation_hq/controllers/Controllers.dart';
-
+import 'package:hk_policestation_hq/screens/settings/about.dart';
+import 'package:hk_policestation_hq/screens/settings/help.dart';
+import 'package:hk_policestation_hq/screens/settings/manage_police_station.dart';
+import 'package:hk_policestation_hq/screens/settings/profile_screen.dart';
+import 'package:hk_policestation_hq/screens/settings/terms.dart';
 
 import '../widgets/settings_item.dart';
 
 class SettingsScreen extends StatelessWidget {
-  
-SettingsScreen({super.key});
-List<String> names = [
+  SettingsScreen({super.key});
+  List<String> names = [
     'My Profile',
     'Manage Police station ',
     'About',
@@ -23,7 +28,41 @@ List<String> names = [
     Icons.confirmation_num,
     Icons.logout,
   ];
-
+  List<void Function()?> ontaps = [
+    () {
+      Get.to(ProfileScreen());
+    },
+    () {
+      Get.to(ProfileScreen());
+    },
+    () {
+      Get.to(ProfileScreen());
+    },
+    () {
+      Get.to(ProfileScreen());
+    },
+    () {
+      Get.to(ProfileScreen());
+    },
+    () {
+      Get.to(ProfileScreen());
+    },
+    // Get.to(ManagePoliceStation()),
+    // Get.to(AboutScreen()),
+    // Get.to(HelpScreen()),
+    // Get.to(TermsScreen()),
+    // Api().logout().whenComplete(() => null).then((value) {
+    //   print(value);
+    // }
+    // )
+  ];
+  Map i = {
+    0: {
+      "nmae": "kok",
+      "icon": Icons.help,
+      "onTAp": Get.to(ProfileScreen()),
+    }
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,8 +123,17 @@ List<String> names = [
                 ],
               ),
             ),
-            SettingsItem(name: 'My Profile', icon: Icons.person,ontap: (){},)
-         
+            Flexible(
+              child: ListView.builder(
+                itemCount: 6,
+                itemBuilder: (BuildContext context, int index) {
+                  return SettingsItem(
+                      name: names[index],
+                      icon: icons[index],
+                      ontap: () => ontaps[index]);
+                },
+              ),
+            ),
           ],
         ),
       ),
