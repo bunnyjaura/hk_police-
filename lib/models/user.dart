@@ -42,6 +42,12 @@ var reg_id;
 var EmailOtp;
 var created;
 var updated;
+var Fresh_count;
+var Pending_count;
+var hq_id;
+var lan_line;
+var policeStation_Name;
+var SHO_name;
 
 
 
