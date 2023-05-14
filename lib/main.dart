@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hk_policestation_hq/screens/history_screen.dart';
-import 'package:hk_policestation_hq/screens/home_screen.dart';
 import 'package:hk_policestation_hq/screens/splashScreen.dart';
 import 'package:hk_policestation_hq/style.dart';
-
-import 'screens/login_screen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() async {
   await GetStorage.init();
@@ -25,14 +22,17 @@ class MyApp extends StatelessWidget {
         statusBarColor: Styles().themeGreen
 
       ),
-      child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          
-          primarySwatch: Colors.blue,
-        ),
-        home:  SplashScreen(),
+      child: ResponsiveSizer(
+builder: (context, orientation, screenType)
+         { return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+           
+            primarySwatch: Colors.blue,
+          ),
+          home:  const SplashScreen(),
+        );}
       ),
     );
   }
