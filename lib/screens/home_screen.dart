@@ -6,10 +6,22 @@ import 'package:hk_policestation_hq/screens/settings_screen.dart';
 import 'package:hk_policestation_hq/widgets/home_items.dart';
 import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
    HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
 var items;
+
+@override
+void initState() {
+  super.initState();
+  
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
