@@ -4,6 +4,8 @@ import 'package:hk_policestation_hq/API.dart';
 import 'package:hk_policestation_hq/widgets/fresh_item.dart';
 import 'package:hk_policestation_hq/widgets/not_found.dart';
 
+import 'home_screen.dart';
+
 class FreshScreen extends StatefulWidget {
   const FreshScreen({
     super.key,
@@ -16,11 +18,19 @@ class FreshScreen extends StatefulWidget {
 class _FreshScreenState extends State<FreshScreen> {
   int items = 2;
   var data = [].obs;
-  abc() {
+  var data1 = [].obs;
+  abc() async{
     Api().patientDetailsByPoliceSta().then((value) {
       data.value = value['details'];
+
+      print(data.value);
+      Api().get_policeStationlist().then((value) {
+        print(value);
+       data1.value = value['details'];
+   });
     });
   }
+
 
   @override
   void initState() {
@@ -49,22 +59,26 @@ class _FreshScreenState extends State<FreshScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Image.asset('assets/ic_home.png'),
+            child: InkWell(
+      onTap: () => Get.off(const HomeScreen()),
+      child: Image.asset('assets/ic_home.png')),
           )
         ],
       ),
-      body: items == 0
+      body:( data1 == null)
           ? const NotFound()
-          : ListView.builder(
-              itemCount: items,
+          : Obx(() => ListView.builder(
+              itemCount: data.value.length,
               itemBuilder: (BuildContext context, int index) {
-                return Obx(() => FreshItem(
-                      caseNo: data[index]['patient_no'],
-                      date: data[index]['created'],
-                      location: data[index]['patient_address'],
-                    ));
+                return FreshItem(
+                  data: data.value[index],
+                  data1: data1.value[0],
+                      caseNo: data.value[index]['patient_no'],
+                      date: data.value[index]['created'],
+                      location: data.value[index]['patient_address'],
+                    );
               },
-            ),
+            ),)
     );
   }
 }

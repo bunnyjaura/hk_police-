@@ -4,6 +4,7 @@ import 'package:hk_policestation_hq/API.dart';
 import 'package:hk_policestation_hq/widgets/history_item.dart';
 
 import '../widgets/not_found.dart';
+import 'home_screen.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -49,7 +50,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Image.asset('assets/ic_home.png'),
+            child: InkWell(
+      onTap: () => Get.off(const HomeScreen()),
+      child: Image.asset('assets/ic_home.png')),
           )
         ],
       ),

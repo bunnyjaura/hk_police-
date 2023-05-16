@@ -5,6 +5,7 @@ import 'package:hk_policestation_hq/API.dart';
 import 'package:hk_policestation_hq/controllers/Controllers.dart';
 import 'package:hk_policestation_hq/screens/fresh_screen.dart';
 import 'package:hk_policestation_hq/screens/history_screen.dart';
+import 'package:hk_policestation_hq/screens/pending_screen.dart';
 import 'package:hk_policestation_hq/screens/settings_screen.dart';
 import 'package:hk_policestation_hq/widgets/home_items.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -53,7 +54,7 @@ History_count */
                   padding: EdgeInsets.symmetric(horizontal: 15.sp),
                   child: CircleAvatar(
                     radius: 25.sp,
-                    backgroundImage: const AssetImage('assets/img_police.png'),
+                    backgroundImage:  NetworkImage(Controllers().userFetchData.image),
                   ),
                 ),
                 Text(
@@ -69,7 +70,7 @@ History_count */
             children: [
               Obx(
                 () => HomeItem(
-                  ontap: () => Get.to(FreshScreen()),
+                  ontap: () => Get.to(const FreshScreen()),
                   heading: 'Fresh Cases',
                   image: 'assets/ic_fresh_cases.png',
                   title: 'Fresh case',
@@ -82,6 +83,7 @@ History_count */
                   image: 'assets/ic_pending.png',
                   title: 'Pending case',
                   number: Controllers().userFetchData.Pending_count.value,
+                  ontap: () => Get.to(const PendingScreen()),
                 ),
               )
             ],
@@ -97,12 +99,12 @@ History_count */
                     image: 'assets/ic_history.png',
                     title: 'History case',
                     number: Controllers().userFetchData.History_count.value,
-                    ontap: () => Get.to(HistoryScreen()),
+                    ontap: () => Get.to(const HistoryScreen()),
                   )),
               HomeItem(
                 heading: 'Settings',
                 image: 'assets/ic_settings.png',
-                ontap: () => Get.to(SettingsScreen()),
+                ontap: () => Get.to(SettingsScreen(img: Controllers().userFetchData.image,)),
               ),
             ],
           ),

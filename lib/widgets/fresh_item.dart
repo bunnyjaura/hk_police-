@@ -7,12 +7,16 @@ class FreshItem extends StatelessWidget {
   String caseNo;
   String date;
   String location;
-
+  var data;
+var data1;
   FreshItem({
     super.key,
     required this.caseNo,
     required this.date,
     required this.location,
+    this.data,
+   this.data1
+
   });
 
   @override
@@ -91,8 +95,10 @@ class FreshItem extends StatelessWidget {
             Center(
               child: InkWell(
                 onTap: () => Get.to(DetailsScreen(
+                  isFresh: true,
                   title: caseNo,
-                  img: '',
+                  data: data,
+                  data1: data1,
                 )),
                 child: Container(
                   height: 35,

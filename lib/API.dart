@@ -178,8 +178,8 @@ class Api {
     print("get_policeStationlist called");
     Map data;
     var formdata = FormData.fromMap({
-      'hq_id': 'hq-id',
-      'address': 'address',
+      'hq_id': Controllers().userFetchData.id,
+      // 'address': 'address',
     });
 
     Response response =
@@ -248,7 +248,7 @@ class Api {
     print("patientDetailsByPoliceSta called");
     Map data;
     var formdata = FormData.fromMap({
-      'policeheadquaterId': 'policeheadquaterId',
+      'policeheadquaterId': Controllers().userFetchData.id,
       'address': 'address',
     });
 

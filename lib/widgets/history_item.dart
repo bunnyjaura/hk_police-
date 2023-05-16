@@ -22,6 +22,7 @@ class HistoryItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: InkWell(
         onTap: () => Get.to(DetailsScreen(
+          isFresh: false,
           data: data,
           title: title,
           img: img,

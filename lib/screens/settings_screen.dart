@@ -3,17 +3,20 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hk_policestation_hq/API.dart';
 import 'package:hk_policestation_hq/controllers/Controllers.dart';
+import 'package:hk_policestation_hq/screens/home_screen.dart';
 import 'package:hk_policestation_hq/screens/settings/about.dart';
 import 'package:hk_policestation_hq/screens/settings/help.dart';
 import 'package:hk_policestation_hq/screens/settings/manage_police_station.dart';
 import 'package:hk_policestation_hq/screens/settings/profile_screen.dart';
 import 'package:hk_policestation_hq/screens/settings/terms.dart';
 import 'package:hk_policestation_hq/screens/splashScreen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../widgets/settings_item.dart';
 
 class SettingsScreen extends StatelessWidget {
-  SettingsScreen({super.key});
+  String img;
+  SettingsScreen({super.key,required this.img});
   List<String> names = [
     'My Profile',
     'Manage Police station ',
@@ -80,7 +83,9 @@ class SettingsScreen extends StatelessWidget {
   actions: [
    Padding(
      padding: const EdgeInsets.all(16.0),
-     child: Image.asset('assets/ic_home.png'),
+     child: InkWell(
+      onTap: () => Get.off(const HomeScreen()),
+      child: Image.asset('assets/ic_home.png')),
    )
   ],
 ),
@@ -89,37 +94,44 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 50,
+              height: 37.sp,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
+                
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
+                    Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        'assets/ic_hospital.png',
+                      backgroundImage: NetworkImage(
+                        img,
                       ),
-                      radius: 20,
+                      radius: 25.sp,
                     ),
                   ),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '${Controllers().userFetchData.name}',
-                        style: const TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w600),
+                      SizedBox(
+                        width: 70.w,
+                        child: Text(
+                          
+                          '${Controllers().userFetchData.name}',
+                          style:  TextStyle(
+                              fontSize: 18.sp, fontWeight: FontWeight.w600,),overflow: TextOverflow.clip,
+                        ),
                       ),
+
                       Text('${Controllers().userFetchData.address}',
-                          style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w100)),
+                          style:  TextStyle(
+                              fontSize: 15.sp, fontWeight: FontWeight.w400)),
                     ],
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 300,
+              height: 67.2.sp,
               child: ListView.builder(
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {

@@ -3,11 +3,15 @@ import 'package:get/get.dart';
 import 'package:hk_policestation_hq/widgets/details_item.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../style.dart';
+
 class DetailsScreen extends StatefulWidget {
   String title;
-  String img;
+  var img;
   var data;
-  DetailsScreen({super.key, required this.title, required this.img, this.data});
+  bool isFresh;
+  var data1;
+  DetailsScreen({super.key, required this.title, this.img, this.data,required this.isFresh,this.data1});
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
@@ -23,11 +27,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
   //     print(data);
   //   });
   // }
-
+  
   @override
   void initState() {
     super.initState();
-    print(widget.data);
+    print(widget.data1);
 
     // abc();
   }
@@ -53,7 +57,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       widget.data['ambulance_number'],
       widget.data['driver_name'],
       widget.data['SHO_name'],
-      widget.data['policeStation_Name'],
+     widget.isFresh? widget.data1['policeStation_Name'] : widget.data['policeStation_Name'],
       widget.data['patient_address'],
       widget.data['report'],
     ];
@@ -89,8 +93,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.network(
-                    widget.img,
-                    height: 160,
+                    widget.data['image'] ?? Container(),
+                    height: 50.sp,
                     fit: BoxFit.fitHeight,
                   )),
             ),
@@ -99,7 +103,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 : ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: items.length,
+                    itemCount: widget.isFresh? 8: 9,
                     itemBuilder: (BuildContext context, int index) {
                       return DetailsItem(
                           title: items[index],
@@ -107,9 +111,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           isDropDown: false);
                     },
                   ),
-            SizedBox(
-              height: 25.sp,
-            )
+            Padding(
+              padding:  EdgeInsets.symmetric(vertical: 15.sp),
+              child: Visibility(
+                visible: widget.isFresh,
+                child: Container(
+                      height: 28.sp,
+                      width: 50.sp,
+                      decoration: BoxDecoration(
+                          color: Styles().themeGreen,
+                          borderRadius: BorderRadius.circular(30.sp)),
+                      child: const Center(
+                          child: Text(
+                        'Case Assign',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+              ),
+            ),
           ],
         )),
       ),

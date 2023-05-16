@@ -34,9 +34,9 @@ class HomeItem extends StatelessWidget {
              // crossAxisAlignment: CrossAxisAlignment.start,
               
               children: [
-                Row(mainAxisAlignment: MainAxisAlignment.start,
+                Row(mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(number==null? '':'$title:',style:   TextStyle(color: Colors.red,fontWeight: FontWeight.w600,fontSize: 16.sp),),
+                    Text(number==null? '':'$title',style:   TextStyle(color: Colors.red,fontWeight: FontWeight.w600,fontSize: 16.sp),),
                   ],
                 ),
                 // Visibility(
@@ -55,13 +55,13 @@ class HomeItem extends StatelessWidget {
             ),
           ),
           Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 18.sp,horizontal: 20.sp),
+                  padding:  EdgeInsets.symmetric(vertical: 12.sp,horizontal: 12.sp),
                   child: Visibility(
                     visible: number == null? false:true,
                     child: CircleAvatar(
-                      radius: 15.sp,
+                      radius: 13.sp,
                       backgroundColor: Colors.green,foregroundColor: Colors.white,
-                      child: Text('$number'),
+                      child: Text('$number',style: TextStyle(fontSize: 15.sp),),
                     ),
                   ),
                 ),

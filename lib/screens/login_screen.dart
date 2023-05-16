@@ -1,5 +1,5 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hk_policestation_hq/controllers/Controllers.dart';
@@ -11,6 +11,8 @@ import '../widgets/toast.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -18,8 +20,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //const LoginScreen({super.key});
   bool _isLoading = false;
-  TextEditingController _emailPhoneController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailPhoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final box = GetStorage();
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 60,
             ),
-            Container(
+            SizedBox(
               height: 280,
               child: Stack(
                 alignment: Alignment.bottomCenter,
@@ -153,8 +155,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   value['details']['created'];
                               Controllers().userPutData.updated =
                                   value['details']['updated'];
-
-                              Get.to(HomeScreen());
+const CircularProgressIndicator();
+                              Get.to(const HomeScreen());
+                            
                             }
                           }
                         });
