@@ -7,13 +7,14 @@ class HistoryItem extends StatelessWidget {
   String subtitle;
   String date;
   String img;
+  var data ;
 
   HistoryItem(
       {super.key,
       required this.date,
       required this.subtitle,
       required this.title,
-      required this.img});
+      required this.img ,this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class HistoryItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: InkWell(
         onTap: () => Get.to(DetailsScreen(
+          data: data,
           title: title,
           img: img,
         )),

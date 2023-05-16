@@ -63,6 +63,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     title: data.value[index]['patient_no'],
                     subtitle: data.value[index]['patient_address'],
                     date: data.value[index]['created'],
+                    data: data[index],
                   );
                 },
               )),
