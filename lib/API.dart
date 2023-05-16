@@ -21,7 +21,6 @@ class Api {
       'emailPhone': username,
       'password': pass,
       'reg_id': '',
-
     });
 
     Response response = await dio.post('${url}login', data: formdata);
@@ -322,8 +321,8 @@ class Api {
     print("policeStationHeadCase_History called");
     Map data;
     var formdata = FormData.fromMap({
-      'hq_id': 'hq-id',
-      'address': 'address',
+      'policeheadquaterId': Controllers().userFetchData.id,
+      // 'address': 'address',
     });
 
     Response response =
@@ -346,7 +345,7 @@ class Api {
     Map data;
     var formdata = FormData.fromMap({
       "policeheadquaterId": Controllers().userFetchData.id,
-     // 'address': Controllers().userFetchData.address,
+      // 'address': Controllers().userFetchData.address,
     });
 
     Response response =
