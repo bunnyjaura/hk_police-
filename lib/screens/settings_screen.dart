@@ -16,7 +16,7 @@ import '../widgets/settings_item.dart';
 
 class SettingsScreen extends StatelessWidget {
   String img;
-  SettingsScreen({super.key,required this.img});
+  SettingsScreen({super.key, required this.img});
   List<String> names = [
     'My Profile',
     'Manage Police station ',
@@ -67,28 +67,34 @@ class SettingsScreen extends StatelessWidget {
     },
   };
   final box = GetStorage();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
-  leading: InkWell(
-    onTap: () => Get.back(),
-    child: const Icon(Icons.arrow_back_ios,color: Colors.black,)),
-  centerTitle: true,
-  title: const Text('Settings',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),),
-  elevation: 0,
-  backgroundColor: Colors.transparent,
-  actions: [
-   Padding(
-     padding: const EdgeInsets.all(16.0),
-     child: InkWell(
-      onTap: () => Get.off(const HomeScreen()),
-      child: Image.asset('assets/ic_home.png')),
-   )
-  ],
-),
+        leading: InkWell(
+            onTap: () => Get.back(),
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            )),
+        centerTitle: true,
+        title: const Text(
+          'Settings',
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.w700, fontSize: 18),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: InkWell(
+                onTap: () => Get.off(const HomeScreen()),
+                child: Image.asset('assets/ic_home.png')),
+          )
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -97,9 +103,8 @@ class SettingsScreen extends StatelessWidget {
               height: 37.sp,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                
                 children: [
-                    Padding(
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(
@@ -115,15 +120,16 @@ class SettingsScreen extends StatelessWidget {
                       SizedBox(
                         width: 70.w,
                         child: Text(
-                          
                           '${Controllers().userFetchData.name}',
-                          style:  TextStyle(
-                              fontSize: 18.sp, fontWeight: FontWeight.w600,),overflow: TextOverflow.clip,
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          overflow: TextOverflow.clip,
                         ),
                       ),
-
                       Text('${Controllers().userFetchData.address}',
-                          style:  TextStyle(
+                          style: TextStyle(
                               fontSize: 15.sp, fontWeight: FontWeight.w400)),
                     ],
                   ),
@@ -133,6 +139,7 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(
               height: 67.2.sp,
               child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   return SettingsItem(
