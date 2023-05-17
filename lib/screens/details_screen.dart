@@ -10,32 +10,20 @@ class DetailsScreen extends StatefulWidget {
   var img;
   var data;
   bool isFresh;
-  var data1;
-  DetailsScreen({super.key, required this.title, this.img, this.data,required this.isFresh,this.data1});
+
+  DetailsScreen({
+    super.key,
+    required this.title,
+    this.img,
+    this.data,
+    required this.isFresh,
+  });
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  // abc() {
-  //   Api().policeStationHeadCase_History().then((value) {
-  //   setState(() {
-  //       data = value['details'];
-  //   });
-  //   print(widget.data);
-  //     print(data);
-  //   });
-  // }
-  
-  @override
-  void initState() {
-    super.initState();
-    print(widget.data1);
-
-    // abc();
-  }
-
   List<String> items = [
     'Details',
     'Doctor Name',
@@ -50,14 +38,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List details = [
+    List<String> details = [
       widget.data['patient_details'],
       widget.data['doctor_id'],
       widget.data['hospitalName'],
       widget.data['ambulance_number'],
       widget.data['driver_name'],
       widget.data['SHO_name'],
-     widget.isFresh? widget.data1['policeStation_Name'] : widget.data['policeStation_Name'],
+      widget.data['policeStation_Name'],
       widget.data['patient_address'],
       widget.data['report'],
     ];
@@ -92,18 +80,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
               padding: const EdgeInsets.only(bottom: 15),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network(
-                    widget.data['image'] ?? Container(),
-                    height: 50.sp,
-                    fit: BoxFit.fitHeight,
-                  )),
+                  child: widget.data == null
+                      ? Container()
+                      : Image.network(
+                          widget.data['image'],
+                          height: 50.sp,
+                          fit: BoxFit.fitHeight,
+                        )),
             ),
             widget.data == null
                 ? const CircularProgressIndicator()
                 : ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.isFresh? 8: 9,
+                    itemCount: widget.isFresh ? 8 : 9,
                     itemBuilder: (BuildContext context, int index) {
                       return DetailsItem(
                           title: items[index],
@@ -112,21 +102,21 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     },
                   ),
             Padding(
-              padding:  EdgeInsets.symmetric(vertical: 15.sp),
+              padding: EdgeInsets.symmetric(vertical: 15.sp),
               child: Visibility(
                 visible: widget.isFresh,
                 child: Container(
-                      height: 28.sp,
-                      width: 50.sp,
-                      decoration: BoxDecoration(
-                          color: Styles().themeGreen,
-                          borderRadius: BorderRadius.circular(30.sp)),
-                      child: const Center(
-                          child: Text(
-                        'Case Assign',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                    ),
+                  height: 28.sp,
+                  width: 50.sp,
+                  decoration: BoxDecoration(
+                      color: Styles().themeGreen,
+                      borderRadius: BorderRadius.circular(30.sp)),
+                  child: const Center(
+                      child: Text(
+                    'Case Assign',
+                    style: TextStyle(color: Colors.white),
+                  )),
+                ),
               ),
             ),
           ],

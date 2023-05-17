@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as g;
 import 'package:hk_policestation_hq/controllers/Controllers.dart';
+import 'package:hk_policestation_hq/widgets/not_found.dart';
 
 class Api {
   String url =
@@ -257,7 +258,15 @@ class Api {
 
     if (response.statusCode == 200) {
       data = jsonDecode(response.data) as Map;
-      return data;
+      if (data["message"] == "Details found successfuly") {
+        Controllers().userPutData.patientDetailsByPoliceSta.value =
+            data['details'];
+        // print(Controllers().userFetchData.patientDetailsByPoliceSta);
+      } else {
+        const NotFound();
+      }
+
+      // return data;
     } else {
       g.Get.snackbar('Error', 'Something went wrong',
           snackPosition: g.SnackPosition.BOTTOM,

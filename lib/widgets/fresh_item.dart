@@ -8,15 +8,13 @@ class FreshItem extends StatelessWidget {
   String date;
   String location;
   var data;
-var data1;
+
   FreshItem({
     super.key,
     required this.caseNo,
     required this.date,
     required this.location,
     this.data,
-   this.data1
-
   });
 
   @override
@@ -98,7 +96,6 @@ var data1;
                   isFresh: true,
                   title: caseNo,
                   data: data,
-                  data1: data1,
                 )),
                 child: Container(
                   height: 35,
